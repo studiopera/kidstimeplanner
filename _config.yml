@@ -1,0 +1,8 @@
+# Jekyll config for GitHub Pages
+title: Kids Time Planner
+description: Parent-managed task planner for kids
+theme: jekyll-theme-minimal
+markdown: kramdown
+
+# Pretty URLs: /privacy-policy.tr instead of /privacy-policy.tr.html
+permalink: pretty
