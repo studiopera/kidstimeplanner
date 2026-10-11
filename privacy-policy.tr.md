@@ -4,7 +4,7 @@
 **Veri Sorumlusu:** Erhan Serin
 **İletişim:** studioperaturkey@gmail.com
 **Yürürlük tarihi:** 31 Mayıs 2026
-**Son güncelleme:** 31 Mayıs 2026
+**Son güncelleme:** 11 Ekim 2026
 
 > Bu politika, KVKK (6698 sayılı Kişisel Verilerin Korunması Kanunu), GDPR ve
 > GDPR-K (16 yaş altı veriler), Google Play Families Policy ve COPPA prensipleri
@@ -15,11 +15,12 @@
 ## 1. Özet
 
 Kids Time Planner, **ebeveynlerin çocuklarına ait günlük görev planını yönetmesi
-için tasarlanmış** bir mobil uygulamadır. Tüm hesap sahipleri ebeveyndir;
-çocuklar uygulamaya kendi adlarına kayıt olmaz. Uygulama:
+için tasarlanmış** bir mobil uygulamadır. Hesapları ebeveynler açar; çocuklar
+uygulamaya kendi adlarına kayıt olmaz. Ebeveyn isterse çocuğuna kendi
+cihazında giriş imkânı verebilir (bkz. 2.3). Uygulama:
 
 - Çocuk verilerini **yalnızca ebeveynin girdiği biçimde** saklar (ad, emoji,
-  isteğe bağlı fotoğraf, görev verisi).
+  görev verisi).
 - Çocuk verilerini **reklam amacıyla kullanmaz**, üçüncü taraflarla
   **satmaz veya paylaşmaz** (Google Firebase altyapı sağlayıcısı hariç).
 - **Reklam göstermez**, analitik / takip SDK'ları içermez (Firebase Analytics
@@ -31,10 +32,10 @@ için tasarlanmış** bir mobil uygulamadır. Tüm hesap sahipleri ebeveyndir;
 
 | Veri | Nereden | Amaç | Saklama |
 |---|---|---|---|
-| E-posta adresi | Üyelik formu / Google Sign-In | Hesap oluşturma, kimlik doğrulama, parolanın sıfırlanması, OTP doğrulama kodlarının iletilmesi | Hesap aktif olduğu sürece |
-| Görünen ad | Üyelik / Google profili | Ekran içi selamlama | Hesap aktif olduğu sürece |
+| E-posta adresi | Üyelik formu / Google Sign-In / Apple ile Giriş | Hesap oluşturma, kimlik doğrulama, parolanın sıfırlanması, OTP doğrulama kodlarının iletilmesi | Hesap aktif olduğu sürece |
+| Görünen ad | Üyelik / Google veya Apple profili | Ekran içi selamlama | Hesap aktif olduğu sürece |
 | Parola | Üyelik formu | Kimlik doğrulama | Firebase tarafından şifrelenmiş biçimde; düz metin asla saklanmaz |
-| Premium abonelik durumu | Google Play | Premium özelliklere erişim | Hesap aktif olduğu sürece |
+| Premium abonelik durumu | Google Play / Apple App Store | Premium özelliklere erişim | Hesap aktif olduğu sürece |
 | FCM cihaz token'ı | Cihazınız (Firebase Messaging) | Görev tamamlanma bildirimi, haftalık özet gönderebilmek | Cihaz değiştirilene veya hesap silinene kadar |
 | PIN doğrulayıcısı | Cihazınızdaki ayar | Ebeveyn paneline erişimi sınırlamak | Yalnızca cihazınızda (SharedPreferences); şifrelenmiş hash + tuz olarak |
 
@@ -44,13 +45,29 @@ için tasarlanmış** bir mobil uygulamadır. Tüm hesap sahipleri ebeveyndir;
 |---|---|---|
 | Çocuğun adı veya takma adı | Profili tanıma | Profil silinene kadar |
 | Emoji / avatar seçimi | Görsel tanım | Profil silinene kadar |
-| Profil fotoğrafı (isteğe bağlı) | Görsel tanım | Profil silinene kadar; ebeveyn istediğinde kaldırılabilir |
 | Görevler, tamamlanma kayıtları, yıldızlar, ödüller, rutinler | Uygulamanın temel işlevi | Hesap aktif olduğu sürece |
 
 Çocuk verisi yalnızca ebeveynin (hesap sahibinin) Firebase UID'sine bağlıdır.
 Başka bir ebeveynin verisine erişilemez (Firestore Security Rules ile zorunludur).
 
-### 2.3 Otomatik olarak toplanan veriler
+### 2.3 Çocuğun kendi cihazından girişi (isteğe bağlı)
+
+Ebeveyn, çocuğunun başka bir telefon veya tablette **yalnızca kendi çocuk
+profilini** açabilmesine izin verebilir. Ebeveyn bunu ebeveyn panelinde bir
+çocuk profili için açmadıkça hiçbir şey oluşturulmaz.
+
+| Veri | Nereden | Amaç | Saklama |
+|---|---|---|---|
+| Ebeveynin belirlediği kullanıcı adı ve şifre | Ebeveyn paneli | Çocuğun girişi | Ebeveyn girişi kaldırana, profili veya hesabı silene kadar; şifre Firebase Auth tarafından hash'lenmiş olarak saklanır |
+| Çocuğun kendi Apple, Google veya e-posta hesabı (yalnızca ebeveyn o adrese davet gönderirse) | Ebeveyn paneli, ardından çocuğun girişi | Çocuğun girişi | Yukarıdakiyle aynı; davetteki e-posta adresi yalnızca davet kabul edilene veya kaldırılana kadar tutulur |
+| Çocuk cihazının FCM token'ı | Çocuğun cihazı | O cihazda görev hatırlatmaları | Giriş kaldırılana veya profil/hesap silinene kadar |
+
+Çocuk hesabı yalnızca kendi profiline ait görevleri, ödülleri ve hedefleri
+görebilir ve kendi görevlerini tamamlandı olarak işaretleyebilir. Ebeveyn
+panelini açamaz, satın alma yapamaz, ayarları değiştiremez, diğer çocukları
+göremez.
+
+### 2.4 Otomatik olarak toplanan veriler
 
 | Veri | Amaç | Saklama |
 |---|---|---|
@@ -69,6 +86,8 @@ veri işleyenler yalnızca hizmetin sağlanması için kullanılır:
 |---|---|---|---|
 | Google Firebase (Auth, Firestore, Storage, Functions, Messaging) | Tüm hesap & uygulama verisi | Hosting ve veritabanı | Google Veri İşleme Sözleşmesi (DPA) |
 | Google Play Billing | Abonelik makbuzu | Premium doğrulama | Google Play geliştirici sözleşmesi |
+| Apple App Store (Uygulama İçi Satın Alma) | Abonelik makbuzu | Premium doğrulama | Apple Developer Program lisans sözleşmesi |
+| Apple ile Giriş | E-posta (gizli yönlendirme adresi olabilir) + ad | Giriş | Apple gizlilik politikası |
 | Google Sign-In | E-posta + ad | Tek tıkla giriş | Google Hesabı politikası |
 
 Yasal yükümlülük (mahkeme kararı vb.) durumunda yetkili makamlara veri paylaşımı
@@ -77,13 +96,14 @@ yapılabilir.
 ## 4. Çocukların verisinin korunması (önemli)
 
 - Uygulama Google Play Families Policy ve COPPA prensiplerine uygundur.
-- Çocuk hesabı oluşturulmaz; tüm hesaplar ebeveyne aittir.
+- Çocuklar kendi başlarına kayıt olamaz. Çocuk girişi yalnızca ebeveyn
+  oluşturursa vardır, yalnızca o çocuğun kendi profiliyle sınırlıdır ve
+  ebeveyn istediği an kaldırabilir.
 - Çocuk verileri **reklam amacıyla işlenmez**, analitik için profillenmez.
 - Uygulama içinde **çocuğa yönelik reklam yoktur**, üçüncü taraf reklam SDK'ları
   yüklü değildir.
 - Premium abonelik satın alma akışı **yalnızca ebeveyn paneli üzerinden,
   PIN ile korunarak** erişilebilir; çocuk modunda satın alma başlatılamaz.
-- Çocuğun profil fotoğrafı isteğe bağlıdır ve ebeveyn istediği anda silebilir.
 
 ## 5. Verilerinizin saklandığı yer
 
@@ -96,8 +116,11 @@ veri aktarımı** söz konusudur. Google, GDPR Standart Sözleşme Maddeleri (SC
 ## 6. Saklama süreleri
 
 - Hesap aktif olduğu sürece veriler korunur.
+- Ebeveyn bir çocuk girişini kaldırdığında veya çocuk profilini sildiğinde
+  ilgili çocuk giriş hesabı hemen silinir.
 - Hesap silindiğinde **30 gün içinde** tüm kullanıcı verisi (kullanıcı belgesi,
-  çocuk profilleri, görev geçmişi, fotoğraflar, FCM token, OTP geçmişi) kalıcı
+  çocuk profilleri, çocuk giriş hesapları, görev geçmişi, FCM token'ları,
+  OTP geçmişi) kalıcı
   olarak silinir.
 - Yasal saklama yükümlülüğü olan kayıtlar (örn. satın alma makbuzu) ilgili
   yasal süre dolana kadar arşivlenmiş biçimde saklanır.
